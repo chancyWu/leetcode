@@ -10,45 +10,55 @@ Note:
 """
 
 def merge(A, m, B, n):
+    if len(A) == 0:
+        A.extend(B)
+        return
+
+    previous = 0
     for b in B:
-        previous = 0
-        if len(A) == 0:
-            A.append(b)
-        else:
-            for j in range(previous, len(A)):
-                if b < A[j]:
-                    A.insert(j, b)
-                    previous = j+1
-                    break
-                elif j == len(A)-1 and b > A[j]:
-                    A.append(b)
-                    previous = j+1
-                    break
+        for j in range(previous, len(A)):
+            if b < A[j]:
+                A.insert(j, b)
+                previous = j+1
+                break
+            elif j == len(A)-1 and b > A[j]:
+                A.append(b)
+                previous = j+1
+                break
 
 if __name__ == '__main__':
+
     # test 1
     A1 = [3, 4, 6, 7]
     B1 = [1, 2, 5, 8, 9, 10]
-    print A1
-    print B1
+    print "Input: ", A1, ',', B1
     merge(A1, len(A1), B1, len(B1))
-    print 'Merged:'
-    print A1
+    print "Output:", A1
 
     # test 2
     A2 = [3, 4, 6, 7]
     B2 = [8, 9]
-    print A2
-    print B2
+    print "Input: ", A2, ',', B2
     merge(A2, len(A2), B2, len(B2))
-    print 'Merged:'
-    print A2
+    print "Output:", A2
 
     # test 3
     A3 = []
     B3 = [1]
-    print A3
-    print B3
+    print "Input: ", A3, ',' , B3
     merge(A3, len(A3), B3, len(B3))
-    print 'Merged:'
-    print A3
+    print "Output:", A3
+
+    # test 4
+    A4 = []
+    B4 = [1, 2, 4]
+    print "Input: ", A4, ',' , B4
+    merge(A4, len(A4), B4, len(B4))
+    print "Output:", A4
+
+    # test 5
+    A5 = [8, 9]
+    B5 = [1, 3, 5, 7]
+    print "Input: ", A5, ',', B5
+    merge(A5, len(A5), B5, len(B5))
+    print "Output:", A5
