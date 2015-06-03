@@ -9,15 +9,15 @@ class Solution:
 
         charDict = {}
         for i, c in enumerate(s):
-            if c not in charDict.keys():
+            if c not in charDict.keys() and t[i] not in charDict.values():
                 charDict[c] = t[i]
-            elif charDict[c] != t[i]:
+            elif t[i] in charDict.values() or charDict[c] != t[i]:
                 return False
         return True
 
 if __name__ == '__main__':
-    test_list = [["ab","aa"]]
-    result_list = [False]
+    test_list = [["ab","aa"],["aa", "bb"]
+    result_list = [False, True]
     success = True
     solution = Solution()
     for i, s in enumerate(test_list):
