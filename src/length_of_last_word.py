@@ -21,7 +21,7 @@ class Solution:
         if spaceFound:
             return wordIndex-spaceIndex
         elif wordFound:
-            return len(s)
+            return wordIndex + 1
         else:
             return 0
 
