@@ -38,11 +38,29 @@ class Solution2:
                     maxSum = curSum
         return maxSum
 
+# Dynamic Programming with state transaction. O(n)
+# cur_sum = max(a[i], cur_sum + a[i]) ?? think about this.
+# max_sum = max(cur_sum, max_sum)
+class Solution3:
+    # @param {integer[]} nums
+    # @return {integer}
+    def maxSubArray(self, nums):
+        if not nums:
+            return None
+        for i, num in enumerate(nums):
+            if i == 0:
+                cur_sum = nums[0]
+                max_sum = cur_sum
+            else:
+                cur_sum = num if num > cur_sum + num else cur_sum + num
+                max_sum = cur_sum if cur_sum > max_sum else max_sum
+        return max_sum
+
 if __name__ == '__main__':
-    test_list = [[-2, 1, -3, 4, -1, 2, 1, -5, 4]]
-    result_list = [6]
+    test_list = [[-2, 1, -3, 4, -1, 2, 1, -5, 4], [1], [-1]]
+    result_list = [6, 1, -1]
     success = True
-    solution = Solution2()
+    solution = Solution3()
     for i,nums in enumerate(test_list):
         result = solution.maxSubArray(nums)
         if result != result_list[i]:
